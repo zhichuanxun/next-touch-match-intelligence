@@ -1,0 +1,5 @@
+// Original vector pixel sprites. No external assets or real-player likenesses.
+const skins=['#d9a279','#9e654a','#efc29c','#bd8860'];
+const hairs=['#241b2c','#543527','#b28344','#171d30'];
+export function pixelPlayer(p,{portrait=false}={}){const k=p.number+(p.team==='away'?3:0),skin=skins[k%4],hair=hairs[(k+1)%4],shirt=p.team==='home'?'#3e8bff':'#ff795e',trim=p.team==='home'?'#dcecff':'#ffe4d9';
+return `<svg class="pixel ${portrait?'portrait':''}" viewBox="0 0 16 ${portrait?16:24}" aria-hidden="true" shape-rendering="crispEdges"><path d="M5 1h6v1h2v6h-2v2H5V8H3V2h2Z" fill="${hair}"/><path d="M5 4h6v5H5Z" fill="${skin}"/><path d="M6 6h1v1H6Zm3 0h1v1H9Z" fill="#211426"/><path d="M6 8h4v1H6Z" fill="${k%3===0?hair:'#bd7c66'}"/><path d="M5 10h6v1h2v2h2v5h-3v-3h-1v5H5v-5H4v3H1v-5h2v-2h2Z" fill="${shirt}"/><path d="M6 10h4v2H6ZM3 12h2v2H3Zm8 0h2v2h-2Z" fill="${trim}"/>${!portrait?`<path d="M5 19h6v2H9v2h-3v-2H5Z" fill="#ede6f5"/><path d="M5 23h3v1H4v-1Zm4 0h3v1H9Z" fill="#0f1022"/><text x="8" y="18" font-family="Arial,sans-serif" font-size="5.2" font-weight="800" text-anchor="middle" fill="#fff">${p.number}</text>`:''}</svg>`;}

@@ -1,0 +1,212 @@
+{
+  "title": "Next Touch · Synthetic training match",
+  "synthetic": true,
+  "seed": 7,
+  "notice": "Fictional football behaviour, generated from a seeded player simulation. Coordinates and completed events are observations of that simulation. Pressure, passing choices and movement projections are computed from the current and past observations. No real match or player-performance claims.",
+  "start": 0.2,
+  "end": 600,
+  "frames": 3000,
+  "sourceHz": 5,
+  "replayHz": 5,
+  "pitch": [
+    105,
+    68
+  ],
+  "roster": [
+    {
+      "id": "Player11",
+      "name": "Eli Noor",
+      "number": 1,
+      "team": "home",
+      "role": "GK",
+      "fictional": true
+    },
+    {
+      "id": "Player1",
+      "name": "Luca Vale",
+      "number": 2,
+      "team": "home",
+      "role": "RB",
+      "fictional": true
+    },
+    {
+      "id": "Player2",
+      "name": "Milo Reed",
+      "number": 3,
+      "team": "home",
+      "role": "LB",
+      "fictional": true
+    },
+    {
+      "id": "Player3",
+      "name": "Arin Sol",
+      "number": 4,
+      "team": "home",
+      "role": "CB",
+      "fictional": true
+    },
+    {
+      "id": "Player4",
+      "name": "Theo Kade",
+      "number": 5,
+      "team": "home",
+      "role": "CB",
+      "fictional": true
+    },
+    {
+      "id": "Player5",
+      "name": "Nico Hart",
+      "number": 6,
+      "team": "home",
+      "role": "DM",
+      "fictional": true
+    },
+    {
+      "id": "Player6",
+      "name": "Ivo Lane",
+      "number": 7,
+      "team": "home",
+      "role": "RW",
+      "fictional": true
+    },
+    {
+      "id": "Player7",
+      "name": "Leo Voss",
+      "number": 8,
+      "team": "home",
+      "role": "CM",
+      "fictional": true
+    },
+    {
+      "id": "Player8",
+      "name": "Sam Rook",
+      "number": 9,
+      "team": "home",
+      "role": "ST",
+      "fictional": true
+    },
+    {
+      "id": "Player9",
+      "name": "Finn Moss",
+      "number": 10,
+      "team": "home",
+      "role": "AM",
+      "fictional": true
+    },
+    {
+      "id": "Player10",
+      "name": "Kai Vale",
+      "number": 11,
+      "team": "home",
+      "role": "LW",
+      "fictional": true
+    },
+    {
+      "id": "Player15",
+      "name": "Ari West",
+      "number": 1,
+      "team": "away",
+      "role": "GK",
+      "fictional": true
+    },
+    {
+      "id": "Player16",
+      "name": "Noah Skye",
+      "number": 2,
+      "team": "away",
+      "role": "RB",
+      "fictional": true
+    },
+    {
+      "id": "Player17",
+      "name": "Tao Flint",
+      "number": 3,
+      "team": "away",
+      "role": "LB",
+      "fictional": true
+    },
+    {
+      "id": "Player18",
+      "name": "Remy Hale",
+      "number": 4,
+      "team": "away",
+      "role": "CB",
+      "fictional": true
+    },
+    {
+      "id": "Player19",
+      "name": "Owen Crest",
+      "number": 5,
+      "team": "away",
+      "role": "CB",
+      "fictional": true
+    },
+    {
+      "id": "Player20",
+      "name": "Max Rowan",
+      "number": 6,
+      "team": "away",
+      "role": "DM",
+      "fictional": true
+    },
+    {
+      "id": "Player21",
+      "name": "Jan Tide",
+      "number": 7,
+      "team": "away",
+      "role": "RW",
+      "fictional": true
+    },
+    {
+      "id": "Player22",
+      "name": "Ezra Lake",
+      "number": 8,
+      "team": "away",
+      "role": "CM",
+      "fictional": true
+    },
+    {
+      "id": "Player23",
+      "name": "Beau Lark",
+      "number": 9,
+      "team": "away",
+      "role": "ST",
+      "fictional": true
+    },
+    {
+      "id": "Player24",
+      "name": "Rui North",
+      "number": 10,
+      "team": "away",
+      "role": "AM",
+      "fictional": true
+    },
+    {
+      "id": "Player25",
+      "name": "Jules Grey",
+      "number": 11,
+      "team": "away",
+      "role": "LW",
+      "fictional": true
+    }
+  ],
+  "eventCount": 365,
+  "eventTypes": [
+    "PASS",
+    "BALL LOST",
+    "RECOVERY",
+    "CHALLENGE"
+  ],
+  "chunks": [
+    {
+      "file": "tracking-0.json",
+      "start": 0.2,
+      "end": 300
+    },
+    {
+      "file": "tracking-1.json",
+      "start": 300.2,
+      "end": 600
+    }
+  ]
+}
