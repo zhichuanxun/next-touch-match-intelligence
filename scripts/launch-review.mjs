@@ -1,8 +1,13 @@
 import { createApp } from '../server.mjs';
 import { spawn } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+import { parseEnv } from 'node:util';
 
-// Portable reviews never inherit private model credentials from the host.
-const server = createApp({ env: {} });
+// Load only the explicit portable configuration; never inherit host credentials.
+let env = {};
+try { env = parseEnv(readFileSync(new URL('../../.env', import.meta.url), 'utf8')); }
+catch (error) { if (error.code !== 'ENOENT') throw error; }
+const server = createApp({ env });
 server.once('error', error => {
   console.error(`Unable to start Next Touch: ${error.message}`);
   process.exitCode = 1;
@@ -12,7 +17,7 @@ server.listen(0, '127.0.0.1', () => {
   console.log(`\nNext Touch is ready: ${url}\n`);
   console.log('Keep this window open while reviewing. Close it to stop the app.');
   console.log('Bundled synthetic replay and evidence analysis work offline.');
-  console.log('Live language-model conversation is not included in this portable build.\n');
+  console.log('Agent is optional: configure .env beside this launcher and restart to enable it.\n');
   if (process.argv.includes('--no-browser')) return;
   const command = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'rundll32.exe' : 'xdg-open';
   const args = process.platform === 'win32' ? ['url.dll,FileProtocolHandler', url] : [url];

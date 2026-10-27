@@ -45,3 +45,24 @@ test('Agent uses private endpoint configuration and exposes only its public alia
  assert.equal(sent.url,'https://model.example/chat/completions');assert.equal(sent.options.headers.Authorization,'Bearer private-test-key');assert.equal(JSON.parse(sent.options.body).model,'private-model-identifier');
  await assert.rejects(agent.ask({model:'arbitrary-model',question:'Review',time:185,player:'Player20'}),/server configuration/);
 });
+
+test('Agent is off without configuration and cannot make outbound model calls',async()=>{
+ const {createMatchAgent}=await import('../match-agent.mjs');let calls=0;
+ for(const env of [{},{MATCH_AI_PROVIDER:'azure'},{MATCH_AI_PROVIDER:'compatible'}]){
+  const agent=createMatchAgent({env,fetchImpl:async()=>{calls++;throw Error('Unexpected outbound request');}});
+  assert.deepEqual((await agent.status()).models,[]);
+  await assert.rejects(agent.ask({model:'agent',question:'Review',time:10,player:'Player6'}),/configuration is incomplete/);
+ }
+ assert.equal(calls,0);
+});
+test('Azure Agent requires enable flag and sends a configured request with server-only credentials',async()=>{
+ const {createMatchAgent}=await import('../match-agent.mjs');
+ const env={MATCH_AI_PROVIDER:'azure',AZURE_OPENAI_ENDPOINT:'https://test-resource.openai.azure.com',AZURE_OPENAI_DEPLOYMENT:'test-deployment',AZURE_OPENAI_API_KEY:'test-private-key',ENABLE_LIVE_AI:'false'};
+ assert.deepEqual((await createMatchAgent({env,azureConfig:readConfig(env)}).status()).models,[]);
+ env.ENABLE_LIVE_AI='true';let sent;
+ const agent=createMatchAgent({env,azureConfig:readConfig(env),fetchImpl:async(url,options)=>{sent={url,options};return new Response(JSON.stringify({choices:[{message:{content:'Review the cited player involvement.'}}]}));}});
+ const status=await agent.status();assert.deepEqual(status.models,['agent']);assert.ok(!JSON.stringify(status).includes('test-private-key'));
+ await agent.ask({model:'agent',question:'Review',time:10,player:'Player6',phase:'match'});
+ assert.equal(sent.url,'https://test-resource.openai.azure.com/openai/v1/chat/completions');assert.equal(sent.options.headers['api-key'],'test-private-key');
+ assert.equal(JSON.parse(sent.options.body).model,'test-deployment');
+});

@@ -4,7 +4,7 @@ An English football analysis desk that connects the ball, off-ball movement, tac
 
 ## Review without installing developer tools
 
-Download the matching **portable ZIP** from [Review downloads](https://github.com/zhichuanxun/next-touch-match-intelligence/releases/tag/v0.4.0-review). Extract the entire folder, then double-click **Start Next Touch**. A browser opens automatically. Keep the launcher window open during review; close it to stop.
+Download the matching **portable ZIP** from [Review downloads](https://github.com/zhichuanxun/next-touch-match-intelligence/releases/latest). Extract the entire folder, then double-click **Start Next Touch**. A browser opens automatically. Keep the launcher window open during review; close it to stop.
 
 | Computer | Download |
 | --- | --- |
@@ -15,7 +15,9 @@ Download the matching **portable ZIP** from [Review downloads](https://github.co
 
 The runtime and synthetic fixture are included. No Node.js installation, account, API key or internet connection is required for the replay and evidence analysis. These are portable archives, not signed installers; operating-system or organizational security policies may require approval. The Mac Apple Silicon package is locally smoke-tested; other platform packages contain official checksum-verified runtimes but have not been executed on their target operating systems.
 
-**Agent limitation:** the offline package does not include free-form language-model responses demonstrated in the video. It includes evidence rules; a live model service remains a separate review-access gap. The launcher does not use host environment credentials. Azure hosting/inference remain unverified.
+**Optional Agent:** chat and proactive model feedback are off until a model service is configured. To enable them in the portable build, copy `agent.env.example` to `.env` beside the launcher, enter your deployment and credentials, then restart. Core match analysis works without a model. No credentials or model weights are included; Azure hosting/inference remain unverified.
+
+**[Complete running guide](docs/RUNNING.md)** — portable app, npm, source build, Docker, local app with Azure inference, and **[Azure App Service deployment](deploy/README.md)**.
 
 See `READ ME FIRST.txt` inside each archive for a three-minute review path. Developers can reproduce these packages with `python3 scripts/package-review.py` (Python 3.12+, Node 22+, and network access at build time). Runtime licenses and archive checksums are included.
 

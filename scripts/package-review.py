@@ -34,6 +34,10 @@ def build(item):
     shutil.copytree(ROOT / 'dist', dest / 'app')
     (dest / 'app' / 'scripts').mkdir()
     shutil.copy2(ROOT / 'scripts' / 'launch-review.mjs', dest / 'app' / 'scripts')
+    shutil.copy2(ROOT / '.env.example', dest / 'agent.env.example')
+    shutil.copytree(ROOT / 'docs', dest / 'docs')
+    shutil.copytree(ROOT / 'deploy', dest / 'deploy')
+    shutil.copy2(ROOT / 'README.md', dest / 'README.md')
     runtime = dest / 'runtime'
     runtime.mkdir()
     windows = label.startswith('windows')
@@ -88,9 +92,11 @@ Predictions are heuristic estimates, not validated performance probabilities.
 
 AGENT LIMITATION
 Evidence-based analysis is included. Free-form language-model responses
-shown in the video require a separately configured model service and are
-NOT included in this offline package. No model credentials are distributed.
-This launcher intentionally ignores host environment credentials.
+require a separately configured model service. Agent stays off until configured.
+To enable: copy agent.env.example to .env in this folder, set the provider,
+endpoint, deployment and credentials, then restart. Open Setup instructions
+in the Agent panel for Azure and local-model options. No credentials or
+model weights are distributed. Host environment credentials are ignored.
 Azure hosting and inference have not been verified.
 
 SOURCE AND DOCUMENTATION
