@@ -1,0 +1,10 @@
+.git
+.openai
+.env
+.env.*
+node_modules
+artifacts
+coverage
+tests
+*.zip
+*.tar.gz
